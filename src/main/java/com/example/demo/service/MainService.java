@@ -7,10 +7,14 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.bean.QToDo;
 import com.example.demo.bean.ToDo;
 import com.example.demo.repository.ToDoRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class MainService {
 	
@@ -40,8 +44,13 @@ public class MainService {
 		return null;
 	}
 	
-	public void queryDslTest() {
+	public List<ToDo> queryDslTest() {
+		log.info("querydsl get");
 		
+		QToDo todo = QToDo.toDo;
+		
+		List<ToDo> list = factory.select(todo).from(todo).fetch();
+		return list;
 	}
 	
 }

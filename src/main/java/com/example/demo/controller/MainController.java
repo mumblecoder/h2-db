@@ -25,6 +25,11 @@ public class MainController {
 	public ResponseEntity<?> get() { 
 		return ResponseEntity.ok(service.getToDo());
 	}
+
+	@GetMapping("/querydsl")
+	public ResponseEntity<?> queryDslGet() { 
+		return ResponseEntity.ok(service.queryDslTest());
+	}
 	
 	@PostMapping
 	public ResponseEntity<?> post(@RequestBody ToDo toDo){
